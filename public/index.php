@@ -24,7 +24,7 @@
                 <div class="column is-half">
 
                     <?php // Check if form was submitted:
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
                         // Build POST request:
                         $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
@@ -41,7 +41,6 @@
                         } else {
                             // Not verified - show form error
                         }
-
                     } ?>
 
                     <form method="POST">
