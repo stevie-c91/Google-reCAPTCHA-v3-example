@@ -35,12 +35,12 @@
                         $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
                         $recaptcha = json_decode($recaptcha);
 
-                        // Take action based on the score returned:
-                        if ($recaptcha->score >= 0.5) {
+                        // Take action based on the success(bool):
+                        if ($recaptcha->success) {
                             // Verified - send email
                         } else {
                             // Not verified - show form error
-                        }
+                            // Show error message - $recaptcha->{'error-codes'}
                     } ?>
 
                     <form method="POST">
