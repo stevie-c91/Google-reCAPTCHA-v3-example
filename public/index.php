@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
     <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'contact' }).then(function (token) {
-                var recaptchaResponse = document.getElementById('recaptchaResponse');
-                recaptchaResponse.value = token;
+        function loadRecaptchaToken() {
+            grecaptcha.ready(function () {
+                grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'contact' }).then(function (token) {
+                    var recaptchaResponse = document.getElementById('recaptchaResponse');
+                    recaptchaResponse.value = token;
+                });
             });
-        });
+        }
+        loadRecaptchaToken();
+        setInterval(function(){loadRecaptchaToken();}, 100000);
     </script>
 </head>
 
